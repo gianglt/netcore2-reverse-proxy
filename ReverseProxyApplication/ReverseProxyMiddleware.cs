@@ -52,8 +52,8 @@ namespace ReverseProxyApplication
             {
                 var stringContent = Encoding.UTF8.GetString(content);
                 var newContent = stringContent.Replace("https://www.google.com", "/google")
-                    .Replace("https://www.gstatic.com", "/googlestatic")
-                    .Replace("https://docs.google.com/forms", "/googleforms");
+                    .Replace("https://dieuhanhvp.danang.gov.vn", "/dieuhanhvp")
+                    .Replace("https://kcl.dieuhanhvp.net", "/kcl");
                 await context.Response.WriteAsync(newContent, Encoding.UTF8);
             } else
             {
@@ -136,19 +136,14 @@ namespace ReverseProxyApplication
             Uri targetUri = null;
             PathString remainingPath;
 
-            if (request.Path.StartsWithSegments("/googleforms", out remainingPath))
-            {
-                targetUri = new Uri("https://docs.google.com/forms" + remainingPath);
-            }
-
             if (request.Path.StartsWithSegments("/google", out remainingPath))
             {
                 targetUri = new Uri("https://www.google.com" + remainingPath);
             }
 
-            if (request.Path.StartsWithSegments("/googlestatic", out remainingPath))
+            if (request.Path.StartsWithSegments("/ubuntu", out remainingPath))
             {
-                targetUri = new Uri(" https://www.gstatic.com" + remainingPath);
+                targetUri = new Uri(" https://ubuntu.dieuhanhvp.net" + remainingPath);
             }
 
             return targetUri;
